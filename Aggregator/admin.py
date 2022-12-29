@@ -1,5 +1,5 @@
 from django.contrib import admin
-from news.models import Headline
-# Register your models here.
+from Aggregator.models import Headline
 
 admin.site.register(Headline)
+
