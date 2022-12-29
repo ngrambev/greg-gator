@@ -6,5 +6,5 @@ from django.views.generic.base import RedirectView
 urlpatterns = [
     path("", include("AggregatorApp.urls")),
     path('admin/', admin.site.urls),
-    path("favicon.ico",  RedirectView.as_view(url=staticfiles_storage.url("favicon.ico")))
+    path("favicon.ico",  RedirectView.as_view(url=staticfiles_storage.url("favicon.ico"))),
 ]
