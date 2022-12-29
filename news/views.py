@@ -1,7 +1,7 @@
 import requests
 from django.shortcuts import render, redirect
 from bs4 import BeautifulSoup as BSoup
-from Aggregator.models import Headline
+from news.models import Headline
 
 requests.packages.urllib3.disable_warnings()
 

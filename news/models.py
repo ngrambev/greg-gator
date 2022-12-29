@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.db import models
 
-# Represents the headline object.
 class Headline(models.Model):
 	title = models.CharField(max_length=200)
 	image = models.URLField(null=True, blank=True)
