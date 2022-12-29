@@ -19,6 +19,8 @@ def scrape(request):
 	Headline.objects.all().delete()
 
 	# Fill the database up again.
+
+	# Motortrend
 	motorTrend = "https://www.motortrend.com/"
 
 	session = requests.Session()
@@ -40,6 +42,25 @@ def scrape(request):
 		# Save the headline into the database.
 		new_headline.save()
 
+	# The Drive
+	theDrive = "https://www.thedrive.com/"
+
+	content = session.get(theDrive + "the-war-zone/", verify=False).content
+	soup = BSoup(content, "html.parser")
+
+	# Find all instances of the proper class which represents a headline.
+	News = soup.find_all('a', class_="MuiBox-root css-3f60fj")
+	for article in News:
+		# Parse out the data out of the html.
+		title = article.find('h3', class_="MuiTypography-root MuiTypography-h5 css-z31x94").getText()
+		link = urljoin(theDrive, article['href'])
+
+		# Create a Headline object, and store pertinent info.
+		new_headline = Headline()
+		new_headline.title = title
+		new_headline.url = link
+
+		# Save the headline into the database.
+		new_headline.save()
 
 	return redirect("../")
-
