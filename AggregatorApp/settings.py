@@ -2,6 +2,7 @@ import os
 
 BUILD_DIR = '/home/ad/flat'
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SECRET_KEY = os.environ.get('SECRET_KEY', 'oweugnweufgnw')
 DEBUG = True
 ALLOWED_HOSTS = []
 
