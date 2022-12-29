@@ -10,7 +10,7 @@ def news_list(request):
 	context = {
 		'object_list': headlines,
 	}
-	return render(request, "news/home.html", context)
+	return render(request, "home.html", context)
 
 def scrape(request):
 	session = requests.Session()
