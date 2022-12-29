@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Car News Aggregator</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
 	<div class="jumbotron">
-		<h1>DataFlair News Aggregator</h1>
+		<h1>Car News Aggregator</h1>
 		<form method="POST" action="{% url 'scrape' %}">
 			{% csrf_token %}
-			<button type="submit" class="btn btn-success">Get my morning news</button>
+			<button type="submit" class="btn btn-success">Refresh news</button>
 		</form>
 	</div>
   <div class="card-columns" style="padding: 10px; margin: 20px;">
 	{% for object in object_list %}
 	<div class="card" style="width: 18rem;border:5px black solid;">
-  <img class="card-img-top" src = "{{ object.image }}">
   <div class="card-body">
     <h5 class="card-title"><div class="card-body">
       <a href="{{object.url}}"><h5 class="card-title">{{object.title}}</h5></a>

@@ -1,4 +1,5 @@
 import requests
+from urllib.parse import urljoin
 from django.shortcuts import render, redirect
 from bs4 import BeautifulSoup as BSoup
 from news.models import Headline
@@ -14,17 +15,22 @@ def news_list(request):
 	return render(request, "home.html", context)
 
 def scrape(request):
+	# Delete all previous headlines, they may be outdated.
+	Headline.objects.all().delete()
+
+	# Fill the database up again.
+	motorTrend = "https://www.motortrend.com/"
+
 	session = requests.Session()
-	content = session.get("https://www.motortrend.com/auto-news/", verify=False).content
+	content = session.get(motorTrend + "auto-news/", verify=False).content
 	soup = BSoup(content, "html.parser")
 
 	# Find all instances of the proper class which represents a headline.
-	News = soup.find_all('a', {"class": "_22VtJ"})
+	News = soup.find_all('a', class_="_22VtJ")
 	for article in News:
 		# Parse out the data out of the html.
 		title = article.getText()
-		link = article['href']
-
+		link = urljoin(motorTrend, article['href'])
 
 		# Create a Headline object, and store pertinent info.
 		new_headline = Headline()
