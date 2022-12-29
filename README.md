@@ -1,2 +1,2 @@
-# News Aggregator
-Scrapes a website for headlines.
+# Car News Aggregator
+Scrapes https://motortrend.com and https://thedrive.com for car news.
