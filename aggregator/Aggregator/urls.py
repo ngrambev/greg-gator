@@ -2,6 +2,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path("", include("aggregator-app.urls")),
+    path("", include("AggregatorApp.urls")),
     path('admin/', admin.site.urls)
 ]
