@@ -3,8 +3,16 @@ from urllib.parse import urljoin
 from django.shortcuts import render, redirect
 from bs4 import BeautifulSoup as BSoup
 from news.models import Headline
+from django.http import HttpResponse
+from django.views import View
 
 requests.packages.urllib3.disable_warnings()
+
+
+class Headlines(View):
+    def get(self, request):
+        return HttpResponse('result')
+
 
 def news_list(request):
 	scrape(request)
